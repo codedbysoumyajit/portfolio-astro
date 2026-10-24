@@ -55,10 +55,9 @@ export const siteConfig: SiteConfig = {
     linkedin: "https://linkedin.com/in/codedbysoumyajit",
   },
   currentlyExploring: [
-    "Cloud-native architecture",
-    "Container orchestration with Kubernetes",
-    "Networking fundamentals & protocols",
-    "DevOps practices and CI/CD pipelines",
+    "Cybersecurity",
+    "AI technologies",
+    "Networking fundamentals & protocols"
   ],
   nav: [
     { label: "Home", href: "#home" },
@@ -183,7 +182,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: "Data",
-    skills: ["MongoDB", "SQLite"],
+    skills: ["MongoDB"],
     icon: "database",
   },
   {
@@ -193,7 +192,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: "Exploring",
-    skills: ["Cloud Computing", "Networking", "DevOps"],
+    skills: ["Cloud Computing", "Networking", "Cybersecurity"],
     icon: "compass",
   },
 ];
