@@ -1,0 +1,16 @@
+{
+  "name": "Soumyajit Das — Full Stack Developer",
+  "short_name": "Soumyajit",
+  "description": "Full-stack developer building useful software, developer tools, web applications, and privacy-focused products.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080c16",
+  "theme_color": "#080c16",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://codedbysoumyajit.dev/sitemap-index.xml

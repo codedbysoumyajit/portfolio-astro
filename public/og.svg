@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#080c16" />
+
+  <!-- Ambient Radial Glows -->
+  <circle cx="200" cy="150" r="300" fill="#22d3ee" opacity="0.08" filter="blur(60px)" />
+  <circle cx="1000" cy="480" r="350" fill="#818cf8" opacity="0.08" filter="blur(60px)" />
+
+  <!-- Grid Pattern -->
+  <g opacity="0.05" stroke="#22d3ee" stroke-width="1">
+    <line x1="0" y1="90" x2="1200" y2="90" />
+    <line x1="0" y1="180" x2="1200" y2="180" />
+    <line x1="0" y1="270" x2="1200" y2="270" />
+    <line x1="0" y1="360" x2="1200" y2="360" />
+    <line x1="0" y1="450" x2="1200" y2="450" />
+    <line x1="0" y1="540" x2="1200" y2="540" />
+
+    <line x1="150" y1="0" x2="150" y2="630" />
+    <line x1="300" y1="0" x2="300" y2="630" />
+    <line x1="450" y1="0" x2="450" y2="630" />
+    <line x1="600" y1="0" x2="600" y2="630" />
+    <line x1="750" y1="0" x2="750" y2="630" />
+    <line x1="900" y1="0" x2="900" y2="630" />
+    <line x1="1050" y1="0" x2="1050" y2="630" />
+  </g>
+
+  <!-- Border Frame -->
+  <rect x="40" y="40" width="1120" height="550" rx="20" stroke="#1e293b" stroke-width="2" />
+
+  <!-- Wordmark badge -->
+  <g transform="translate(100, 110)">
+    <rect width="180" height="42" rx="10" fill="#0f1629" stroke="#1e293b" />
+    <text x="20" y="27" font-family="monospace" font-size="16" font-weight="bold" fill="#22d3ee">~/soumyajit.dev</text>
+  </g>
+
+  <!-- Main Headline -->
+  <text x="100" y="240" font-family="sans-serif" font-size="56" font-weight="800" fill="#f8fafc" letter-spacing="-1">
+    Soumyajit Das
+  </text>
+  <text x="100" y="305" font-family="sans-serif" font-size="32" font-weight="600" fill="#94a3b8">
+    Full Stack Developer · India
+  </text>
+
+  <!-- Tagline -->
+  <text x="100" y="380" font-family="sans-serif" font-size="24" fill="#64748b" font-weight="400">
+    Building software that feels simple, fast, and useful.
+  </text>
+  <text x="100" y="415" font-family="sans-serif" font-size="20" fill="#64748b" font-weight="400">
+    Focusing on backend systems, Go, web apps, and privacy-first tools.
+  </text>
+
+  <!-- Footer Tags -->
+  <g transform="translate(100, 480)">
+    <!-- Pill 1 -->
+    <rect x="0" y="0" width="70" height="34" rx="8" fill="#162038" stroke="#1e293b" />
+    <text x="20" y="22" font-family="monospace" font-size="14" fill="#22d3ee">Go</text>
+
+    <!-- Pill 2 -->
+    <rect x="85" y="0" width="125" height="34" rx="8" fill="#162038" stroke="#1e293b" />
+    <text x="100" y="22" font-family="monospace" font-size="14" fill="#f8fafc">TypeScript</text>
+
+    <!-- Pill 3 -->
+    <rect x="225" y="0" width="90" height="34" rx="8" fill="#162038" stroke="#1e293b" />
+    <text x="245" y="22" font-family="monospace" font-size="14" fill="#f8fafc">Python</text>
+
+    <!-- Pill 4 -->
+    <rect x="330" y="0" width="80" height="34" rx="8" fill="#162038" stroke="#1e293b" />
+    <text x="350" y="22" font-family="monospace" font-size="14" fill="#f8fafc">Linux</text>
+
+    <!-- Pill 5 -->
+    <rect x="425" y="0" width="135" height="34" rx="8" fill="#162038" stroke="#1e293b" />
+    <text x="445" y="22" font-family="monospace" font-size="14" fill="#f8fafc">Open Source</text>
+  </g>
+
+  <!-- Domain -->
+  <text x="1060" y="502" text-anchor="end" font-family="monospace" font-size="16" fill="#22d3ee">
+    https://codedbysoumyajit.dev
+  </text>
+</svg>

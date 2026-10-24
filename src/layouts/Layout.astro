@@ -1,0 +1,182 @@
+---
+import "../styles/global.css";
+import { siteConfig } from "../data/site";
+import CommandPalette from "../components/CommandPalette.astro";
+import BackToTop from "../components/BackToTop.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  noIndex = false,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
+const ogImageURL = new URL("/og.png", siteConfig.url);
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "dateCreated": "2024-01-01T00:00:00Z",
+  "dateModified": new Date().toISOString(),
+  "mainEntity": {
+    "@type": "Person",
+    "name": siteConfig.name,
+    "alternateName": siteConfig.wordmark,
+    "description": siteConfig.description,
+    "url": siteConfig.url,
+    "email": siteConfig.email,
+    "jobTitle": siteConfig.role,
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": siteConfig.location,
+    },
+    "sameAs": [
+      siteConfig.social.github,
+      siteConfig.social.linkedin,
+    ],
+    "knowsAbout": [
+      "Go (Golang)",
+      "TypeScript",
+      "JavaScript",
+      "Python",
+      "Linux",
+      "Full Stack Development",
+      "Backend Architecture",
+      "REST APIs",
+      "Zero-Knowledge Encryption",
+      "Docker",
+      "Open Source",
+    ],
+  },
+};
+---
+
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content={siteConfig.author} />
+    <meta name="creator" content={siteConfig.name} />
+    <meta name="publisher" content={siteConfig.name} />
+    <meta name="keywords" content="Soumyajit Das, Full Stack Developer, Go, TypeScript, Python, Backend Engineer, Linux, Developer Tools, Privacy, Web Development, India" />
+    <link rel="canonical" href={canonicalURL.href} />
+    <meta id="theme-color-meta" name="theme-color" content="#080c16" />
+
+    <!-- Robots & Crawlers -->
+    {noIndex ? (
+      <meta name="robots" content="noindex, follow" />
+    ) : (
+      <>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+      </>
+    )}
+
+    <!-- Font Optimization & Preconnections -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Soumyajit Das — Full Stack Developer Portfolio" />
+    <meta property="og:locale" content={siteConfig.locale} />
+    <meta property="og:site_name" content={siteConfig.name} />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL.href} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL.href} />
+    <meta name="twitter:image:alt" content="Soumyajit Das — Full Stack Developer Portfolio" />
+
+    <!-- Favicon, Manifest & Sitemap -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
+    <!-- Instant Theme Script (Dark mode default, user preference persisted) -->
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem("theme");
+          if (stored === "light") {
+            document.documentElement.classList.remove("dark");
+            document.documentElement.classList.add("light");
+            const meta = document.getElementById("theme-color-meta");
+            if (meta) meta.setAttribute("content", "#f8fafc");
+          } else {
+            document.documentElement.classList.add("dark");
+            document.documentElement.classList.remove("light");
+            const meta = document.getElementById("theme-color-meta");
+            if (meta) meta.setAttribute("content", "#080c16");
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen bg-midnight text-text antialiased selection:bg-accent selection:text-white">
+    <!-- Skip navigation link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Top Reading Progress Indicator -->
+    <div id="reading-progress" class="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-accent to-secondary z-50 w-0 transition-all duration-75 ease-out" aria-hidden="true"></div>
+
+    <slot />
+
+    <CommandPalette />
+    <BackToTop />
+
+    <!-- Client Scripts for UX Enhancement -->
+    <script>
+      // Reading Progress Line
+      const progressBar = document.getElementById("reading-progress");
+      window.addEventListener("scroll", () => {
+        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        if (progressBar) {
+          progressBar.style.width = `${Math.min(scrolled, 100)}%`;
+        }
+      }, { passive: true });
+
+      // Scroll Reveal Observer
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -30px 0px" }
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,294 @@
+---
+import { siteConfig, projects } from "../data/site";
+---
+
+<!-- Command Palette Modal -->
+<div
+  id="command-palette-backdrop"
+  class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm transition-opacity duration-200"
+  aria-hidden="true"
+>
+  <div class="fixed inset-0 z-50 flex items-start justify-center p-4 sm:pt-24 pointer-events-none">
+    <div
+      id="command-palette-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Command Palette"
+      class="w-full max-w-xl overflow-hidden rounded-2xl border border-border bg-surface clean-card transition-all duration-200 pointer-events-auto"
+    >
+      <!-- Search Input -->
+      <div class="flex items-center gap-2.5 border-b border-border px-4 py-3">
+        <svg
+          class="h-4 w-4 text-accent shrink-0"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+          />
+        </svg>
+        <input
+          id="command-input"
+          type="text"
+          placeholder="Type a command or jump to section..."
+          class="flex-1 min-w-0 bg-transparent text-sm text-text placeholder:text-text-dim focus:outline-none"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <kbd class="shrink-0 inline-flex items-center rounded bg-surface-alt px-2 py-0.5 font-mono text-[10px] text-text-dim border border-border select-none">
+          ESC
+        </kbd>
+      </div>
+
+      <!-- Command List -->
+      <div id="command-list" class="max-h-80 overflow-y-auto p-2 space-y-1">
+        <!-- Navigation Section -->
+        <div class="px-2 py-1 text-[11px] font-mono uppercase tracking-wider text-text-dim">
+          Jump to section
+        </div>
+        {
+          siteConfig.nav.map((item) => (
+            <button
+              type="button"
+              class="command-item flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm text-text hover:bg-surface-alt transition-colors"
+              data-action="navigate"
+              data-target={item.href}
+            >
+              <span class="flex items-center gap-2.5">
+                <span class="font-mono text-accent text-xs">#</span>
+                <span>{item.label}</span>
+              </span>
+              <span class="font-mono text-xs text-text-dim">Go</span>
+            </button>
+          ))
+        }
+
+        <!-- Projects Section -->
+        <div class="px-2 pt-3 pb-1 text-[11px] font-mono uppercase tracking-wider text-text-dim">
+          Featured Projects
+        </div>
+        {
+          projects.map((p) => (
+            <button
+              type="button"
+              class="command-item flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm text-text hover:bg-surface-alt transition-colors"
+              data-action="navigate"
+              data-target="#projects"
+            >
+              <span class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                <span>{p.name}</span>
+                <span class="text-xs text-text-dim hidden sm:inline">— {p.tagline}</span>
+              </span>
+              <span class="font-mono text-xs text-text-dim">View</span>
+            </button>
+          ))
+        }
+
+        <!-- Actions Section -->
+        <div class="px-2 pt-3 pb-1 text-[11px] font-mono uppercase tracking-wider text-text-dim">
+          Actions
+        </div>
+        <button
+          type="button"
+          class="command-item flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm text-text hover:bg-surface-alt transition-colors"
+          data-action="copy-email"
+        >
+          <span class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-text-dim" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <span class="email-label">Copy Email ({siteConfig.email})</span>
+          </span>
+          <span class="font-mono text-xs text-text-dim">Copy</span>
+        </button>
+
+        <button
+          type="button"
+          class="command-item flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm text-text hover:bg-surface-alt transition-colors"
+          data-action="toggle-theme"
+        >
+          <span class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-text-dim" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <span>Toggle Theme</span>
+          </span>
+          <kbd class="font-mono text-xs text-text-dim">T</kbd>
+        </button>
+
+        <a
+          href={siteConfig.social.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="command-item flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm text-text hover:bg-surface-alt transition-colors"
+        >
+          <span class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-text-dim" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+            <span>GitHub Profile</span>
+          </span>
+          <span class="font-mono text-xs text-text-dim">↗</span>
+        </a>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="border-t border-border px-4 py-2.5 flex items-center justify-between text-[11px] font-mono text-text-dim bg-surface-alt/40">
+        <div class="flex items-center gap-3">
+          <span>Navigate <kbd class="px-1 py-0.5 bg-surface border border-border rounded text-[10px]">↑</kbd> <kbd class="px-1 py-0.5 bg-surface border border-border rounded text-[10px]">↓</kbd></span>
+          <span>Select <kbd class="px-1 py-0.5 bg-surface border border-border rounded text-[10px]">↵</kbd></span>
+        </div>
+        <span>Close <kbd class="px-1 py-0.5 bg-surface border border-border rounded text-[10px]">ESC</kbd></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const backdrop = document.getElementById("command-palette-backdrop");
+  const input = document.getElementById("command-input") as HTMLInputElement;
+  const items = Array.from(document.querySelectorAll(".command-item")) as HTMLElement[];
+  let activeIndex = -1;
+
+  function getVisibleItems() {
+    return items.filter((item) => item.style.display !== "none");
+  }
+
+  function highlightActive() {
+    const visible = getVisibleItems();
+    visible.forEach((item, idx) => {
+      if (idx === activeIndex) {
+        item.classList.add("bg-surface-alt", "text-accent");
+      } else {
+        item.classList.remove("bg-surface-alt", "text-accent");
+      }
+    });
+  }
+
+  function openPalette() {
+    backdrop?.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+    if (input) {
+      input.value = "";
+      input.focus();
+    }
+    filterItems("");
+    activeIndex = 0;
+    highlightActive();
+  }
+
+  function closePalette() {
+    backdrop?.classList.add("hidden");
+    document.body.style.overflow = "";
+    activeIndex = -1;
+  }
+
+  function filterItems(query: string) {
+    const q = query.toLowerCase().trim();
+    items.forEach((item) => {
+      const text = item.textContent?.toLowerCase() || "";
+      if (!q || text.includes(q)) {
+        item.style.display = "flex";
+      } else {
+        item.style.display = "none";
+      }
+    });
+    const visible = getVisibleItems();
+    activeIndex = visible.length > 0 ? 0 : -1;
+    highlightActive();
+  }
+
+  function executeItem(item: HTMLElement) {
+    const action = item.getAttribute("data-action");
+    const target = item.getAttribute("data-target");
+
+    if (action === "navigate" && target) {
+      closePalette();
+      const el = document.querySelector(target);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    } else if (action === "copy-email") {
+      navigator.clipboard.writeText("codedbysoumyajit@proton.me");
+      const label = item.querySelector(".email-label");
+      if (label) label.textContent = "Copied to clipboard!";
+      setTimeout(() => {
+        closePalette();
+        if (label) label.textContent = "Copy Email (codedbysoumyajit@proton.me)";
+      }, 700);
+    } else if (action === "toggle-theme") {
+      closePalette();
+      document.getElementById("theme-toggle")?.click();
+    } else if (item.tagName === "A") {
+      const href = item.getAttribute("href");
+      if (href) window.open(href, "_blank", "noopener,noreferrer");
+      closePalette();
+    }
+  }
+
+  // Keyboard navigation & Shortcuts
+  window.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      if (backdrop?.classList.contains("hidden")) {
+        openPalette();
+      } else {
+        closePalette();
+      }
+    } else if (e.key === "Escape" && !backdrop?.classList.contains("hidden")) {
+      closePalette();
+    } else if (e.key === "t" && !e.metaKey && !e.ctrlKey && document.activeElement?.tagName !== "INPUT" && document.activeElement?.tagName !== "TEXTAREA") {
+      document.getElementById("theme-toggle")?.click();
+    } else if (!backdrop?.classList.contains("hidden")) {
+      const visible = getVisibleItems();
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        if (visible.length > 0) {
+          activeIndex = (activeIndex + 1) % visible.length;
+          highlightActive();
+          visible[activeIndex]?.scrollIntoView({ block: "nearest" });
+        }
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        if (visible.length > 0) {
+          activeIndex = (activeIndex - 1 + visible.length) % visible.length;
+          highlightActive();
+          visible[activeIndex]?.scrollIntoView({ block: "nearest" });
+        }
+      } else if (e.key === "Enter" && activeIndex >= 0 && visible[activeIndex]) {
+        e.preventDefault();
+        executeItem(visible[activeIndex]);
+      }
+    }
+  });
+
+  // Open button trigger from navbar
+  document.querySelectorAll("[data-open-palette]").forEach((btn) => {
+    btn.addEventListener("click", openPalette);
+  });
+
+  // Filter on input
+  input?.addEventListener("input", (e) => {
+    filterItems((e.target as HTMLInputElement).value);
+  });
+
+  // Backdrop click to close
+  backdrop?.addEventListener("click", (e) => {
+    if (e.target === backdrop || (e.target as HTMLElement).closest("#command-palette-dialog") === null) {
+      closePalette();
+    }
+  });
+
+  // Action clicks
+  items.forEach((item) => {
+    item.addEventListener("click", () => {
+      executeItem(item);
+    });
+  });
+</script>

@@ -1,0 +1,166 @@
+---
+import { siteConfig } from "../data/site";
+---
+
+<section id="contact" class="py-20 md:py-28 relative">
+  <div class="section-container">
+    <div class="max-w-3xl mx-auto">
+      <!-- Section Header -->
+      <div class="text-center mb-12 reveal">
+        <div class="inline-flex items-center gap-2 font-mono text-xs text-accent tracking-wider uppercase mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+          <span>Contact</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-bold text-text tracking-tight mb-3">
+          Have an interesting idea? Let's build it.
+        </h2>
+        <p class="text-base text-text-muted max-w-lg mx-auto leading-relaxed">
+          Open to discussing full-stack engineering roles, backend systems, privacy-focused software, or open-source collaboration.
+        </p>
+      </div>
+
+      <!-- Main Contact Card -->
+      <div class="reveal p-6 sm:p-8 rounded-2xl bg-surface border border-border clean-card mb-8">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+          <!-- Left: Email Display -->
+          <div class="text-center sm:text-left space-y-1">
+            <span class="text-xs font-mono text-text-dim block">Direct Email</span>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              class="text-xl sm:text-2xl font-bold font-mono text-text hover:text-accent transition-colors"
+            >
+              {siteConfig.email}
+            </a>
+            <p class="text-xs text-text-dim font-mono">
+              Proton Mail · Encrypted communication
+            </p>
+          </div>
+
+          <!-- Right: Buttons -->
+          <div class="flex items-center gap-3 shrink-0">
+            <button
+              id="copy-email-btn"
+              type="button"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-accent text-white dark:text-slate-950 font-medium hover:bg-accent/90 transition-all text-xs sm:text-sm font-mono"
+              aria-label="Copy email address"
+            >
+              <svg id="copy-icon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              <svg id="check-icon" class="w-4 h-4 hidden text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              <span id="copy-text">Copy</span>
+            </button>
+
+            <a
+              href={`mailto:${siteConfig.email}`}
+              class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-surface-alt hover:bg-surface-hover text-text hover:text-accent border border-border transition-colors text-xs sm:text-sm font-mono font-medium"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>Mail</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Meta Grid: Location & Social Profiles -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal">
+        <!-- Location & IST Time -->
+        <div class="p-5 rounded-xl bg-surface border border-border flex flex-col justify-between">
+          <span class="text-xs font-mono text-text-dim block mb-1">Location</span>
+          <div>
+            <h3 class="text-sm font-semibold text-text">{siteConfig.location}</h3>
+            <p id="live-ist-clock" class="text-xs font-mono text-text-muted mt-0.5">
+              IST (UTC+05:30)
+            </p>
+          </div>
+        </div>
+
+        <!-- GitHub -->
+        <a
+          href={siteConfig.social.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-5 rounded-xl bg-surface border border-border hover:border-border-hover transition-colors group flex flex-col justify-between"
+        >
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-mono text-text-dim">GitHub</span>
+            <span class="text-xs text-text-dim group-hover:text-accent transition-colors">↗</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-text group-hover:text-accent transition-colors">
+              @codedbysoumyajit
+            </h3>
+            <p class="text-xs text-text-muted mt-0.5">Repositories & Code</p>
+          </div>
+        </a>
+
+        <!-- LinkedIn -->
+        <a
+          href={siteConfig.social.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-5 rounded-xl bg-surface border border-border hover:border-border-hover transition-colors group flex flex-col justify-between"
+        >
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-mono text-text-dim">LinkedIn</span>
+            <span class="text-xs text-text-dim group-hover:text-secondary transition-colors">↗</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-text group-hover:text-secondary transition-colors">
+              Soumyajit Das
+            </h3>
+            <p class="text-xs text-text-muted mt-0.5">Professional Network</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Copy Email Interaction
+  const copyBtn = document.getElementById("copy-email-btn");
+  const copyIcon = document.getElementById("copy-icon");
+  const checkIcon = document.getElementById("check-icon");
+  const copyText = document.getElementById("copy-text");
+
+  copyBtn?.addEventListener("click", () => {
+    navigator.clipboard.writeText("codedbysoumyajit@proton.me").then(() => {
+      copyIcon?.classList.add("hidden");
+      checkIcon?.classList.remove("hidden");
+      if (copyText) copyText.textContent = "Copied!";
+
+      setTimeout(() => {
+        copyIcon?.classList.remove("hidden");
+        checkIcon?.classList.add("hidden");
+        if (copyText) copyText.textContent = "Copy";
+      }, 2000);
+    });
+  });
+
+  // Dynamic Live India Clock
+  function updateIndiaClock() {
+    const clock = document.getElementById("live-ist-clock");
+    if (!clock) return;
+    try {
+      const now = new Date();
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      };
+      const formatted = new Intl.DateTimeFormat("en-US", options).format(now);
+      clock.textContent = `${formatted} IST (UTC+05:30)`;
+    } catch (e) {
+      clock.textContent = "India (UTC+05:30)";
+    }
+  }
+
+  updateIndiaClock();
+  setInterval(updateIndiaClock, 30000);
+</script>

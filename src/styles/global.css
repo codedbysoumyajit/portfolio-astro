@@ -1,0 +1,316 @@
+/* ============================================================
+   Global Styles — Design System Tokens & Base
+   ============================================================ */
+
+@import "tailwindcss";
+
+/* ---- Custom Font Faces ---- */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcviYwY.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2") format("woff2");
+}
+
+/* ---- Design Tokens (Tailwind v4 Theme) ---- */
+@theme {
+  --color-midnight: var(--theme-midnight);
+  --color-surface: var(--theme-surface);
+  --color-surface-alt: var(--theme-surface-alt);
+  --color-surface-hover: var(--theme-surface-hover);
+  --color-border: var(--theme-border);
+  --color-border-hover: var(--theme-border-hover);
+  --color-text: var(--theme-text);
+  --color-text-muted: var(--theme-text-muted);
+  --color-text-dim: var(--theme-text-dim);
+  --color-accent: var(--theme-accent);
+  --color-accent-muted: var(--theme-accent-muted);
+  --color-accent-glow: var(--theme-accent-glow);
+  --color-secondary: var(--theme-secondary);
+  --color-secondary-muted: var(--theme-secondary-muted);
+  --color-cyan-soft: var(--theme-cyan-soft);
+  --color-violet-soft: var(--theme-violet-soft);
+  --color-indigo-soft: var(--theme-indigo-soft);
+  --color-emerald-soft: var(--theme-emerald-soft);
+  --color-success: #10b981;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* ---- CSS Variables for Dark & Light Themes ---- */
+:root {
+  /* Dark Mode Default */
+  --theme-midnight: #080c16;
+  --theme-surface: #0f1629;
+  --theme-surface-alt: #162038;
+  --theme-surface-hover: #1c2847;
+  --theme-border: #1e293b;
+  --theme-border-hover: #334155;
+  --theme-text: #f8fafc;
+  --theme-text-muted: #94a3b8;
+  --theme-text-dim: #64748b;
+  --theme-accent: #22d3ee;
+  --theme-accent-muted: #0891b2;
+  --theme-accent-glow: rgba(34, 211, 238, 0.2);
+  --theme-secondary: #818cf8;
+  --theme-secondary-muted: #6366f1;
+  --theme-cyan-soft: rgba(34, 211, 238, 0.1);
+  --theme-violet-soft: rgba(129, 140, 248, 0.1);
+  --theme-indigo-soft: rgba(99, 102, 241, 0.1);
+  --theme-emerald-soft: rgba(52, 211, 153, 0.1);
+
+  --dot-color: rgba(34, 211, 238, 0.04);
+  --nav-bg: rgba(8, 12, 22, 0.85);
+  --glow-line-start: rgba(34, 211, 238, 0);
+  --glow-line-mid: rgba(34, 211, 238, 0.35);
+  --glow-line-end: rgba(129, 140, 248, 0);
+  --selection-bg: #22d3ee;
+  --selection-text: #080c16;
+  --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+}
+
+html.light,
+body.light {
+  /* Light Mode (Clean, High Contrast, Editorial) */
+  --theme-midnight: #f8fafc;
+  --theme-surface: #ffffff;
+  --theme-surface-alt: #f1f5f9;
+  --theme-surface-hover: #e2e8f0;
+  --theme-border: #e2e8f0;
+  --theme-border-hover: #cbd5e1;
+  --theme-text: #0f172a;
+  --theme-text-muted: #334155;
+  --theme-text-dim: #64748b;
+  --theme-accent: #0284c7;
+  --theme-accent-muted: #0369a1;
+  --theme-accent-glow: rgba(2, 132, 199, 0.15);
+  --theme-secondary: #4f46e5;
+  --theme-secondary-muted: #4338ca;
+  --theme-cyan-soft: rgba(2, 132, 199, 0.08);
+  --theme-violet-soft: rgba(79, 70, 229, 0.08);
+  --theme-indigo-soft: rgba(99, 102, 241, 0.08);
+  --theme-emerald-soft: rgba(16, 185, 129, 0.08);
+
+  --dot-color: rgba(15, 23, 42, 0.035);
+  --nav-bg: rgba(248, 250, 252, 0.9);
+  --glow-line-start: rgba(2, 132, 199, 0);
+  --glow-line-mid: rgba(2, 132, 199, 0.25);
+  --glow-line-end: rgba(79, 70, 229, 0);
+  --selection-bg: #bae6fd;
+  --selection-text: #0369a1;
+  --card-shadow: 0 2px 12px -2px rgba(15, 23, 42, 0.06);
+}
+
+/* ---- Base Reset & Defaults ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-midnight);
+  color: var(--color-text);
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Subtle background texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Focus Styles ---- */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---- Selection ---- */
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-midnight);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
+}
+
+/* ---- Skip Link ---- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* ---- Animations ---- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+/* Stagger delays */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+
+/* ---- Scroll Reveal System ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Typography Utilities ---- */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- Subtle Glow Divider ---- */
+.glow-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--glow-line-start),
+    var(--glow-line-mid),
+    var(--glow-line-end)
+  );
+  opacity: 0.5;
+}
+
+/* ---- Container Structure ---- */
+.section-container {
+  max-width: 68rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 640px) {
+  .section-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Clean card shadow & subtle hover */
+.clean-card {
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clean-card:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* Glass effect for navbar */
+.glass-panel {
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}

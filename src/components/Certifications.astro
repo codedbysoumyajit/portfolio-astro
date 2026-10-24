@@ -1,0 +1,118 @@
+---
+import { certifications } from "../data/site";
+
+const certDetails: Record<
+  string,
+  {
+    orgBorder: string;
+    orgBadge: string;
+    topics: string[];
+  }
+> = {
+  "Python for Data Science": {
+    orgBorder: "border-l-blue-500",
+    orgBadge: "bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20",
+    topics: ["Python Fundamentals", "Data Structures", "NumPy & Pandas", "Logic & Loops"],
+  },
+  "Data Analysis with Python": {
+    orgBorder: "border-l-cyan-500",
+    orgBadge: "bg-cyan-500/10 text-cyan-800 dark:text-cyan-400 border-cyan-500/20",
+    topics: ["Data Wrangling", "Statistical Modeling", "Exploratory Analysis", "Pipelines"],
+  },
+  "Networking Basics": {
+    orgBorder: "border-l-emerald-500",
+    orgBadge: "bg-emerald-500/10 text-emerald-800 dark:text-emerald-400 border-emerald-500/20",
+    topics: ["TCP/IP & OSI Model", "IPv4/IPv6 Subnetting", "Routing & Switching", "Network Security"],
+  },
+  "Introduction to Linux": {
+    orgBorder: "border-l-violet-500",
+    orgBadge: "bg-violet-500/10 text-violet-800 dark:text-violet-400 border-violet-500/20",
+    topics: ["Linux Kernel", "Bash & CLI", "Process & File Hierarchy", "System Administration"],
+  },
+};
+---
+
+<section id="certifications" class="py-20 md:py-28 relative">
+  <div class="section-container">
+    <!-- Section header -->
+    <div class="mb-12 reveal">
+      <div class="flex items-center gap-2 font-mono text-xs text-accent tracking-wider uppercase mb-3">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+        <span>Credentials</span>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-bold text-text tracking-tight">
+            Certifications
+          </h2>
+          <p class="text-base text-text-muted max-w-xl mt-2">
+            Verified credentials from Cisco, IBM, and the Linux Foundation.
+          </p>
+        </div>
+        <div class="font-mono text-xs text-text-dim flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>Verified via Credly</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      {
+        certifications.map((cert) => {
+          const details = certDetails[cert.name] || {
+            orgBorder: "border-l-accent",
+            orgBadge: "bg-accent/10 text-accent border-accent/20",
+            topics: ["Verified Credential"],
+          };
+
+          return (
+            <a
+              href={cert.badge}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`reveal group block p-6 rounded-2xl bg-surface border border-border border-l-4 ${details.orgBorder} clean-card relative`}
+            >
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <div class="flex items-center gap-2">
+                  <span class={`px-2 py-0.5 rounded text-[11px] font-mono font-semibold uppercase tracking-wider border ${details.orgBadge}`}>
+                    {cert.issuer}
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                    <span class="w-1 h-1 rounded-full bg-emerald-500 dark:bg-emerald-400"></span>
+                    Verified
+                  </span>
+                </div>
+
+                <div class="p-1 rounded text-text-dim group-hover:text-accent transition-colors shrink-0">
+                  <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+              </div>
+
+              <h3 class="text-base sm:text-lg font-semibold text-text group-hover:text-accent transition-colors duration-150 mb-2">
+                {cert.name}
+              </h3>
+
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                {details.topics.map((topic) => (
+                  <span class="px-2 py-0.5 text-xs font-mono bg-surface-alt text-text-muted rounded border border-border/60">
+                    {topic}
+                  </span>
+                ))}
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-border flex items-center justify-between text-xs font-mono text-text-dim">
+                <span>{cert.issuer}</span>
+                <span class="text-accent group-hover:underline">View on Credly ↗</span>
+              </div>
+            </a>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

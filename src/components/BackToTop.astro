@@ -1,0 +1,38 @@
+---
+---
+
+<button
+  id="back-to-top"
+  type="button"
+  aria-label="Scroll to top of page"
+  class="fixed bottom-6 right-6 z-40 hidden p-3 rounded-full border border-border bg-surface/90 text-text-muted hover:text-accent hover:border-accent shadow-xl backdrop-blur-md transition-all duration-300 hover:-translate-y-1 focus:outline-none"
+>
+  <svg
+    class="w-5 h-5"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="currentColor"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+  </svg>
+</button>
+
+<script>
+  const backToTopBtn = document.getElementById("back-to-top");
+
+  function toggleBackToTop() {
+    if (window.scrollY > 400) {
+      backToTopBtn?.classList.remove("hidden");
+    } else {
+      backToTopBtn?.classList.add("hidden");
+    }
+  }
+
+  window.addEventListener("scroll", toggleBackToTop, { passive: true });
+
+  backToTopBtn?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
